@@ -1,0 +1,24 @@
+*{
+margin: 0%;
+padding: 0%;
+box-sizing: border-box;
+}
+
+.logo{
+
+    width: 7%;
+    height: 4%;
+    background-color: aqua;
+}
+/* .admin_image{
+    width: 100%;
+    object-fit: contain;
+
+} */
+.card-img-top{
+/* width: 35%;
+height: 20%; */
+width: 50%;
+object-fit: contain;
+
+}
