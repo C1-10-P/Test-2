@@ -1,7 +1,8 @@
 <?php include('../includes/connect.php');
 
-// include('./functions/common_function.php');
+
 ?>
+<?php include('../functions/common_function.php')?>
 <?php 
 if(isset($_POST['insert_user'])){
         
@@ -18,33 +19,34 @@ if(isset($_POST['insert_user'])){
 //    access images
 
 $user_image=$_FILES['user_image']['name'];
+
 //      access image temporary name
 $user_image_tmp=$_FILES['user_image']['tmp_name'];
 
-//  check empty condition, neglect product 'required' validation
-if($genre_title=='' or $genre_description=='' or $genre_keywords=='' 
-    or $genre_category=='' or $genre_price=='' or $genre_image1=='' or $genre_image2==''){
-        echo "<script>alert('Fill In The Required Fields')</script>";
-        exit();
-} else{
-    move_uploaded_file($temp_image1, "./genre_images/$genre_image1");
-    move_uploaded_file($temp_image2, "./genre_images/$genre_image2");
+
+move_uploaded_file($user_image_tmp, "./user_image/$user_image");
+
 // insert query.in order from db
     $insert_query="INSERT into user_table (username,user_email,user_password,
     user_image,user_ip,user_address,user_mobile )
     values ('$username','$user_email','$user_password','$user_image',
     '$user_ip','$user_address','$user_mobile')";
 
-    $result_query=mysqli_query($con,$insert_query);
-    if($result_query){
+    $sql_execute=mysqli_query($con, $insert_query);
+    // $result_query=mysqli_query($con,$insert_query);
+
+if( $sql_execute){
         echo "<script>alert('User Added!')</script>";
-    }
+    // $result_query=mysqli_query($con,$insert_query);
 
 }
+else{
+    die(mysqli_error($con));
 }
 
 
 
+}
 
 ?>
 
